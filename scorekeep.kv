@@ -1,0 +1,87 @@
+#:kivy 1.8.0
+<AddButton@Button>:
+    font_size: '22sp'
+    markup: True
+    text: "[b]ADD[/b]"
+    background_color: 0, 0.4, 0.8, 1.0
+    width: 0.4*self.parent.width
+    height: 0.1*self.parent.height
+    center_x: self.parent.center_x
+    
+    
+<HeaderLayout@BoxLayout>:
+    orientation: 'horizontal'
+    padding: 0.04*self.width, 0.04*self.height
+    size_hint: None, None
+    center_x: self.parent.center_x
+    center_y: 0.95*self.parent.top
+    width: self.parent.width
+    height: 0.10*root.height
+    Label:
+        font_size: '22sp'
+        text: "[b]Name[/b]"
+        markup: True
+        size_hint: 0.4, None
+        color: 0, 0.4, 0.8, 1.0
+        text_size: self.size
+        halign: 'left'
+    Label:
+        font_size: '22sp'    
+        text: "[b]Score[/b]"
+        markup: True
+        size_hint: 0.3, None
+        color: 0, 0.4, 0.8, 1.0
+        text_size: self.size
+        halign: 'right'        
+    Label:
+        font_size: '22sp'    
+        text: "[b]Total[/b]"
+        markup: True
+        size_hint: 0.3, None
+        color: 0, 0.4, 0.8, 1.0
+        text_size: self.size      
+        halign: 'right'
+
+<CapitalInput@TextInput>:
+    multiline: False
+    font_size: '22sp'
+    focus: False
+
+<UserLayout@BoxLayout>:
+    orientation: 'horizontal'
+    size_hint:1,1
+    center_x: self.parent.center_x
+    width: self.parent.width
+    CapitalInput:
+        bold: True
+        size_hint: 0.4, None
+        halign: 'left'
+    CapitalInput:
+        bold: True
+        size_hint: 0.3, None
+        halign: 'right'
+    CapitalInput:
+        bold: True
+        size_hint: 0.3, None
+        halign: 'right'
+
+
+<ScorekeepWidget>:
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1.0
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    HeaderLayout:
+    BoxLayout:
+        id: 'data'
+        orientation: 'vertical'
+        padding: 0.04*self.width, 0.00*self.height
+        #center_y: 0.85*self.parent.top
+        width: self.parent.width
+        UserLayout:
+        UserLayout:
+        UserLayout:
+    AddButton: 
+    
