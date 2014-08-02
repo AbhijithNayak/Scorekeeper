@@ -11,6 +11,7 @@ from kivy.uix.button import Button
 from kivy.uix.label import Label
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
+from kivy.properties import ObjectProperty
 from string import uppercase, upper
 
 class CapitalInput(TextInput):
@@ -22,15 +23,24 @@ class CapitalInput(TextInput):
         if s in uppercase[:]:
             return super(CapitalInput, self).insert_text(s, from_undo=from_undo)
 
-class ScorekeepWidget(Widget):
+class UserLayout(BoxLayout):
     pass
 
+class ScorekeepWidget(Widget):
+
+    databox = ObjectProperty(None)
+
+    def add_player(self):
+        self.databox.add_widget(UserLayout())
+        print self.databox.size
+        print self.size
+       
 
 class ScorekeepApp(App):
     def build(self):
         wid = ScorekeepWidget()
-        print wid.size
         return wid
+
 
 if __name__ == "__main__":
 # THIS IS TO ADJUST THE WINDOW SIZE THAT IS DISPLAYED. WILL BE DISCARDED WHEN PORTING TO ANDROID

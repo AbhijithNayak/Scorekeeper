@@ -2,7 +2,7 @@
 <AddButton@Button>:
     font_size: '22sp'
     markup: True
-    text: "[b]ADD[/b]"
+    text: "[b]ADD PLAYER[/b]"
     background_color: 0, 0.4, 0.8, 1.0
     width: 0.4*self.parent.width
     height: 0.1*self.parent.height
@@ -13,11 +13,13 @@
     orientation: 'horizontal'
     padding: 0.02*self.width, 0.04*self.height
     spacing: 0.1*self.width
-    size_hint: None, None
+    size_hint: 1, 1
     center_x: self.parent.center_x
     top: 0.95*self.parent.top
     width: self.parent.width
     height: 0.10*root.height
+
+#PLAYER NAME LABEL
     Label:
         font_size: '22sp'
         text: "[b]Name[/b]"
@@ -26,6 +28,8 @@
         color: 0, 0.4, 0.8, 1.0
         text_size: self.size
         halign: 'left'
+
+#PLAYER SCORE LABEL
     Label:
         font_size: '22sp'    
         text: "[b]Score[/b]"
@@ -34,6 +38,8 @@
         color: 0, 0.4, 0.8, 1.0
         text_size: self.size
         halign: 'left'        
+
+#PLAYER TOTAL LABEL
     Label:
         font_size: '22sp'    
         text: "[b]Total[/b]"
@@ -43,25 +49,33 @@
         text_size: self.size      
         halign: 'left'
 
+
 <CapitalInput@TextInput>:
     multiline: False
     focus: False
+
 
 <UserLayout@BoxLayout>:
     orientation: 'horizontal'
     size_hint: 1, 1
     spacing: 0.1*self.width
-    center_x: self.parent.center_x
-    width: self.parent.width
+    center_x: root.center_x
+    width: root.width
+
+#PLAYER NAME INPUT
     CapitalInput:
         bold: True
         size_hint: 0.6, 1
         halign: 'left'
         disabled_foreground_color: 1,0,0,0.5
+
+#PLAYER SCORE INPUT
     CapitalInput:
         bold: True
         size_hint: 0.2, 1
         halign: 'right'
+
+#PLAYER TOTAL INPUT
     CapitalInput:
         bold: True
         size_hint: 0.2, 1
@@ -69,23 +83,29 @@
 
 
 <ScorekeepWidget>:
+    databox: DataBox
+
     canvas:
         Color:
             rgba: 1, 1, 1, 1.0
         Rectangle:
             size: self.size
             pos: self.pos
-    size_hint: 1, 1
-    HeaderLayout:
-    BoxLayout:
-        id: 'data'
-        orientation: 'vertical'
-        padding: 0.02*self.width, 0.02*self.height
-        spacing: 0.05*self.height
-        top: 0.90*root.top
-        width: self.parent.width
-        UserLayout:
-        UserLayout:
-        UserLayout:
-    AddButton: 
     
+    HeaderLayout:
+    
+    BoxLayout:
+        id: DataBox
+        orientation: 'vertical'
+        size_hint: 1, 1
+        padding: 0.02*self.width, 0.00*self.height, 0.02*self.width, 0.08*self.height #left, top, right, bottom
+        spacing: 0.1*self.height
+        top: 0.90*self.parent.top
+        width: self.parent.width
+        height: 0.8*self.parent.height
+        UserLayout:
+        UserLayout:
+        UserLayout:
+    
+    AddButton: 
+        on_press: root.add_player()
