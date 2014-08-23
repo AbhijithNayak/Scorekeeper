@@ -4,20 +4,23 @@
     markup: True
     text: "[b]ADD PLAYER[/b]"
     background_color: 0, 0.4, 0.8, 1.0
-    width: 0.4*self.parent.width
-    height: 0.1*self.parent.height
-    center_x: self.parent.center_x
     
     
 <HeaderLayout@BoxLayout>:
     orientation: 'horizontal'
-    padding: 0.02*self.width, 0.04*self.height
+    #padding: 0.02*self.width, 0.04*self.height
     spacing: 0.1*self.width
-    size_hint: 1, 1
-    center_x: self.parent.center_x
-    top: 0.95*self.parent.top
-    width: self.parent.width
-    height: 0.10*root.height
+    canvas:
+        Color:
+            rgba: 1, 1, 0, 1.0
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    #size_hint: 1, 1
+#    center_x: self.parent.center_x
+#    top: 0.95*self.parent.top
+#    width: self.parent.width
+#    height: 0.10*root.height
 
 #PLAYER NAME LABEL
     Label:
@@ -28,6 +31,7 @@
         color: 0, 0.4, 0.8, 1.0
         text_size: self.size
         halign: 'left'
+        valign: 'bottom'
 
 #PLAYER SCORE LABEL
     Label:
@@ -38,6 +42,7 @@
         color: 0, 0.4, 0.8, 1.0
         text_size: self.size
         halign: 'left'        
+        valign: 'bottom'
 
 #PLAYER TOTAL LABEL
     Label:
@@ -48,42 +53,58 @@
         color: 0, 0.4, 0.8, 1.0
         text_size: self.size      
         halign: 'left'
+        valign: 'bottom'
 
 
 <CapitalInput@TextInput>:
     multiline: False
     focus: False
+    font_size: '22sp'    
+    bold: True
+    size_hint: 0.6, 0.8
+    halign: 'left'
+    valign: 'center'
+    disabled_foreground_color: 1,0,0,0.5
 
+<IntegerInput@TextInput>:
+    multiline: False
+    focus: False
+    font_size: '22sp'    
+    bold: True
+    size_hint: 0.2, 0.8
+    halign: 'right'
+    valign: 'center'
+    text_size: self.size      
 
 <UserLayout@BoxLayout>:
     orientation: 'horizontal'
-    size_hint: 1, 1
+    size_hint: 1, None
     spacing: 0.1*self.width
     center_x: root.center_x
     width: root.width
 
+    name: NameTI
+    score: ScoreTI
+    total: TotalTI
+
 #PLAYER NAME INPUT
     CapitalInput:
-        bold: True
-        size_hint: 0.6, 1
-        halign: 'left'
-        disabled_foreground_color: 1,0,0,0.5
+        id: NameTI
 
 #PLAYER SCORE INPUT
-    CapitalInput:
-        bold: True
-        size_hint: 0.2, 1
-        halign: 'right'
+    IntegerInput:
+        id: ScoreTI
 
 #PLAYER TOTAL INPUT
-    CapitalInput:
-        bold: True
-        size_hint: 0.2, 1
-        halign: 'right'
+    IntegerInput:
+        id: TotalTI
+        text: ScoreTI.text
+        readonly: True
 
 
-<ScorekeepWidget>:
+ScorekeepWidget:
     databox: DataBox
+    scrollview: scrlv
 
     canvas:
         Color:
@@ -92,20 +113,29 @@
             size: self.size
             pos: self.pos
     
-    HeaderLayout:
-    
     BoxLayout:
-        id: DataBox
         orientation: 'vertical'
-        size_hint: 1, 1
-        padding: 0.02*self.width, 0.00*self.height, 0.02*self.width, 0.08*self.height #left, top, right, bottom
-        spacing: 0.1*self.height
-        top: 0.90*self.parent.top
-        width: self.parent.width
-        height: 0.8*self.parent.height
-        UserLayout:
-        UserLayout:
-        UserLayout:
-    
-    AddButton: 
-        on_press: root.add_player()
+        padding: 0.02*self.width, 0.02*self.height, 0.02*self.width, 0.02*self.height #left, top, right, bottom
+        size: root.size
+        #spacing: 0.05*root.height
+
+        HeaderLayout:
+            size_hint: 1, 0.1 
+
+        ScrollView:
+            id: scrlv
+            size_hint: 1, 0.8 
+
+            BoxLayout:
+                id: DataBox
+                orientation: 'vertical'
+                size_hint: 1, None
+                pos: 0, scrlv.height
+                #top: scrlv.top
+                valign: 'top'
+                #spacing: 0.1*scrlv.height
+
+        
+        AddButton: 
+            size_hint: 1, 0.1
+            on_press: root.add_player()
