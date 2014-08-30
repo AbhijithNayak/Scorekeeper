@@ -102,40 +102,47 @@
         readonly: True
 
 
-ScorekeepWidget:
-    databox: DataBox
-    scrollview: scrlv
+Carousel:
+    loop: True
+    ScorekeepWidget:
+        id: inputwidget
+        databox: DataBox
+        scrollview: scrlv
 
-    canvas:
-        Color:
-            rgba: 1, 1, 1, 1.0
-        Rectangle:
-            size: self.size
-            pos: self.pos
-    
-    BoxLayout:
-        orientation: 'vertical'
-        padding: 0.02*self.width, 0.02*self.height, 0.02*self.width, 0.02*self.height #left, top, right, bottom
-        size: root.size
-        #spacing: 0.05*root.height
-
-        HeaderLayout:
-            size_hint: 1, 0.1 
-
-        ScrollView:
-            id: scrlv
-            size_hint: 1, 0.8 
-
-            BoxLayout:
-                id: DataBox
-                orientation: 'vertical'
-                size_hint: 1, None
-                pos: 0, scrlv.height
-                #top: scrlv.top
-                valign: 'top'
-                #spacing: 0.1*scrlv.height
-
+        canvas:
+            Color:
+                rgba: 1, 1, 1, 1.0
+            Rectangle:
+                size: self.size
+                pos: self.pos
         
-        AddButton: 
-            size_hint: 1, 0.1
-            on_press: root.add_player()
+        BoxLayout:
+            orientation: 'vertical'
+            padding: 0.02*self.width, 0.02*self.height, 0.02*self.width, 0.02*self.height #left, top, right, bottom
+            size: root.size
+            #spacing: 0.05*root.height
+
+            HeaderLayout:
+                size_hint: 1, 0.1 
+
+            ScrollView:
+                id: scrlv
+                size_hint: 1, 0.8 
+
+                BoxLayout:
+                    id: DataBox
+                    orientation: 'vertical'
+                    size_hint: 1, None
+                    pos: 0, scrlv.height
+                    #top: scrlv.top
+                    valign: 'top'
+                    #spacing: 0.1*scrlv.height
+
+            
+            AddButton: 
+                size_hint: 1, 0.1
+                on_press: inputwidget.add_player()
+
+    Image:
+        source: "./xc.png"
+        

@@ -12,6 +12,8 @@ from kivy.uix.label import Label
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.textinput import TextInput
 from kivy.uix.scrollview import ScrollView
+from kivy.uix.carousel import Carousel
+from kivy.uix.image import Image
 from kivy.properties import ObjectProperty, NumericProperty
 from string import uppercase, upper
 import re
