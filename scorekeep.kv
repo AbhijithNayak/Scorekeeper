@@ -3,12 +3,17 @@
     font_size: '22sp'
     markup: True
     text: "[b]ADD PLAYER[/b]"
+    background_color: 0, 0.8, 0.4, 1.0
+
+<UpdateButton@Button>:
+    font_size: '22sp'
+    markup: True
+    text: "[b]UPDATE ROUND[/b]"
     background_color: 0, 0.4, 0.8, 1.0
     
     
-<HeaderLayout@BoxLayout>:
+<ButtonLayout@BoxLayout>:
     orientation: 'horizontal'
-    #padding: 0.02*self.width, 0.04*self.height
     spacing: 0.1*self.width
     canvas:
         Color:
@@ -16,18 +21,25 @@
         Rectangle:
             size: self.size
             pos: self.pos
-    #size_hint: 1, 1
-#    center_x: self.parent.center_x
-#    top: 0.95*self.parent.top
-#    width: self.parent.width
-#    height: 0.10*root.height
+    AddButton:
+    UpdateButton:
+
+<HeaderLayout@BoxLayout>:
+    orientation: 'horizontal'
+    spacing: 0.1*self.width
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1.0
+        Rectangle:
+            size: self.size
+            pos: self.pos
 
 #PLAYER NAME LABEL
     Label:
         font_size: '22sp'
         text: "[b]Name[/b]"
         markup: True
-        size_hint: 0.6, None
+        size_hint: 0.6, 1
         color: 0, 0.4, 0.8, 1.0
         text_size: self.size
         halign: 'left'
@@ -38,7 +50,7 @@
         font_size: '22sp'    
         text: "[b]Score[/b]"
         markup: True
-        size_hint: 0.2, None
+        size_hint: 0.2, 1
         color: 0, 0.4, 0.8, 1.0
         text_size: self.size
         halign: 'left'        
@@ -49,7 +61,7 @@
         font_size: '22sp'    
         text: "[b]Total[/b]"
         markup: True
-        size_hint: 0.2, None
+        size_hint: 0.2, 1
         color: 0, 0.4, 0.8, 1.0
         text_size: self.size      
         halign: 'left'
@@ -83,13 +95,15 @@
     center_x: root.center_x
     width: root.width
 
-    name: NameTI
-    score: ScoreTI
-    total: TotalTI
+    name_ti: NameTI
+    score_ti: ScoreTI
+    total_ti: TotalTI
 
 #PLAYER NAME INPUT
     CapitalInput:
         id: NameTI
+        focus: True
+        #text: self.parent.name_updated()
 
 #PLAYER SCORE INPUT
     IntegerInput:
@@ -108,6 +122,7 @@ Carousel:
         id: inputwidget
         databox: DataBox
         scrollview: scrlv
+        addbutton: AddButton
 
         canvas:
             Color:
@@ -115,34 +130,61 @@ Carousel:
             Rectangle:
                 size: self.size
                 pos: self.pos
+
+#Top Most Box - contains three parts
+#1. Header Layout
+#2. ScrollView that contains the data(Databox)
+#3. Buttons
         
-        BoxLayout:
+        BoxLayout: 
             orientation: 'vertical'
             padding: 0.02*self.width, 0.02*self.height, 0.02*self.width, 0.02*self.height #left, top, right, bottom
             size: root.size
-            #spacing: 0.05*root.height
+            spacing: 0.05*self.height
 
+#1. Header Layout
             HeaderLayout:
-                size_hint: 1, 0.1 
+                size_hint: 1, 0.05
 
+#2. ScrollView that contains the data(Databox)
             ScrollView:
                 id: scrlv
-                size_hint: 1, 0.8 
+                #size_hint: 1, 0.7
 
+#2.1 Player data entry area - databox
                 BoxLayout:
                     id: DataBox
                     orientation: 'vertical'
                     size_hint: 1, None
                     pos: 0, scrlv.height
-                    #top: scrlv.top
                     valign: 'top'
-                    #spacing: 0.1*scrlv.height
+                    #UserLayout:
+                    #    height: 0.16*scrlv.height
 
-            
-            AddButton: 
-                size_hint: 1, 0.1
-                on_press: inputwidget.add_player()
+#3. Buttons
+            BoxLayout:
+                size_hint: 1, 0.2 
+                orientation: 'vertical'
+                spacing: 0.1*self.height
+                canvas:
+                    Color:
+                        rgba: 1, 1, 1, 1.0
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
 
+                UpdateButton:
+                    size_hint: 0.5, 1
+                    pos_hint: {'center_x': 0.5}
+                
+                AddButton: 
+                    id: AddButton
+                    on_press: inputwidget.add_player()
+                    size_hint: 0.5, 1
+                    pos_hint: {'center_x': 0.5}
+
+
+#Page 2 of the Carousel
     Image:
         source: "./xc.png"
         
