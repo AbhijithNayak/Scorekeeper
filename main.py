@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Jul 24 16:40:04 2014
-
-@author: mortz
-"""
 from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.config import Config
@@ -35,6 +29,7 @@ class IntegerInput(TextInput):
         s = re.sub(p,'',substring)
         return super(IntegerInput, self).insert_text(s, from_undo=from_undo)
 
+
 class UserLayout(BoxLayout):
     name_ti = ObjectProperty(None)
     score_ti  = ObjectProperty(None)
@@ -51,8 +46,6 @@ class UserLayout(BoxLayout):
             self.is_name_updated = True
         else:
             self.is_name_updated = False
-
-        print self.is_name_updated
 
 
 class ScorekeepWidget(Widget):
@@ -71,7 +64,6 @@ class ScorekeepWidget(Widget):
 ## read obj.<property> than (*arg[0]).property  
     def enable_addbutton(self, obj, *args):
         self.addbutton.disabled = not(obj.is_name_updated)
-        print "LOCALS ARE:\n", locals()
 
     def add_player(self):
         self.addbutton.disabled = True

@@ -43,7 +43,7 @@
         color: 0, 0.4, 0.8, 1.0
         text_size: self.size
         halign: 'left'
-        valign: 'bottom'
+        valign: 'middle'
 
 #PLAYER SCORE LABEL
     Label:
@@ -54,7 +54,7 @@
         color: 0, 0.4, 0.8, 1.0
         text_size: self.size
         halign: 'left'        
-        valign: 'bottom'
+        valign: 'middle'
 
 #PLAYER TOTAL LABEL
     Label:
@@ -65,7 +65,7 @@
         color: 0, 0.4, 0.8, 1.0
         text_size: self.size      
         halign: 'left'
-        valign: 'bottom'
+        valign: 'middle'
 
 
 <CapitalInput@TextInput>:
@@ -103,7 +103,6 @@
     CapitalInput:
         id: NameTI
         focus: True
-        #text: self.parent.name_updated()
 
 #PLAYER SCORE INPUT
     IntegerInput:
@@ -158,8 +157,6 @@ Carousel:
                     size_hint: 1, None
                     pos: 0, scrlv.height
                     valign: 'top'
-                    #UserLayout:
-                    #    height: 0.16*scrlv.height
 
 #3. Buttons
             BoxLayout:
@@ -187,4 +184,5 @@ Carousel:
 #Page 2 of the Carousel
     Image:
         source: "./xc.png"
+        allow_stretch: True
         
