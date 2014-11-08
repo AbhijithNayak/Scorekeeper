@@ -53,7 +53,7 @@
         size_hint: 0.2, 1
         color: 0, 0.4, 0.8, 1.0
         text_size: self.size
-        halign: 'left'        
+        halign: 'right'        
         valign: 'middle'
 
 #PLAYER TOTAL LABEL
@@ -64,7 +64,7 @@
         size_hint: 0.2, 1
         color: 0, 0.4, 0.8, 1.0
         text_size: self.size      
-        halign: 'left'
+        halign: 'right'
         valign: 'middle'
 
 
@@ -78,15 +78,15 @@
     valign: 'center'
     disabled_foreground_color: 1,0,0,0.5
 
-<IntegerInput@TextInput>:
+<FloatInput@TextInput>:
     multiline: False
     focus: False
     font_size: '22sp'    
     bold: True
     size_hint: 0.2, 0.8
+    text_size: self.size      
     halign: 'right'
     valign: 'center'
-    text_size: self.size      
 
 <UserLayout@BoxLayout>:
     orientation: 'horizontal'
@@ -105,20 +105,21 @@
         focus: True
 
 #PLAYER SCORE INPUT
-    IntegerInput:
+    FloatInput:
         id: ScoreTI
 
 #PLAYER TOTAL INPUT
-    IntegerInput:
+    FloatInput:
         id: TotalTI
-        text: ScoreTI.text
         readonly: True
 
 
 Carousel:
+    id: parousel
     loop: True
     ScorekeepWidget:
         id: inputwidget
+        parousel: parousel
         databox: DataBox
         scrollview: scrlv
         addbutton: AddButton
@@ -173,6 +174,8 @@ Carousel:
                 UpdateButton:
                     size_hint: 0.5, 1
                     pos_hint: {'center_x': 0.5}
+                    on_press: inputwidget.update_round()
+                    #on_press: root.slides[1].reload()
                 
                 AddButton: 
                     id: AddButton
@@ -183,6 +186,22 @@ Carousel:
 
 #Page 2 of the Carousel
     Image:
-        source: "./xc.png"
+        source: "./tot_bars.png"
         allow_stretch: True
+        keep_ratio: False
+        size: root.size
+        
+#Page 3 of the Carousel
+    Image:
+        source: "./nmax_bars.png"
+        allow_stretch: True
+        keep_ratio: False
+        size: root.size
+        
+#Page 4 of the Carousel
+    Image:
+        source: "./nmin_bars.png"
+        allow_stretch: True
+        keep_ratio: False
+        size: root.size
         
