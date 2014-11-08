@@ -103,15 +103,23 @@
     CapitalInput:
         id: NameTI
         focus: True
+        size_hint: 0.7, 0.8
 
 #PLAYER SCORE INPUT
     FloatInput:
         id: ScoreTI
+        size_hint: 0.1, 0.8
 
-#PLAYER TOTAL INPUT
-    FloatInput:
+#PLAYER TOTAL LABEL
+    Label:
         id: TotalTI
-        readonly: True
+        font_size: '22sp'    
+        markup: True
+        size_hint: 0.2, 1
+        color: 0, 0.4, 0.8, 1.0
+        text_size: self.size      
+        halign: 'right'
+        valign: 'middle'
 
 
 Carousel:
