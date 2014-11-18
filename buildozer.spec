@@ -29,11 +29,10 @@ source.include_exts = py,png,jpg,kv,atlas
 #version.filename = %(source.dir)s/main.py
 
 # (str) Application versioning (method 2)
-version = 1.0
+version = 1.0.0
 
 # (list) Application requirements
-# comma seperated e.g. requirements = sqlite3,kivy
-requirements = kivy
+requirements = kivy, matplotlib
 
 # (list) Garden requirements
 #garden_requirements =
@@ -45,7 +44,7 @@ requirements = kivy
 #icon.filename = %(source.dir)s/data/icon.png
 
 # (str) Supported orientation (one of landscape, portrait or all)
-orientation = landscape
+orientation = portrait
 
 # (bool) Indicate if the application should be fullscreen or not
 fullscreen = 0

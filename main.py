@@ -12,6 +12,7 @@ from kivy.properties import ObjectProperty, NumericProperty, BooleanProperty
 from string import uppercase, upper
 import re
 import scoredb
+from BarGraph import BarGraph
 
 class CapitalInput(TextInput):
 
@@ -104,16 +105,17 @@ class ScorekeepWidget(Widget):
             self.scoredb.add_player_info(child.name_ti.text, sum(child.score_list), child.score_list[-1])
 
         self.scoredb.update_max_min() 
-        self.scoredb.update_plots()
 
-        try:
-            self.parousel.slides[1].reload()
-            self.parousel.slides[2].reload()
-            self.parousel.slides[3].reload()
-        except AttributeError:
-            self.parousel.slides[1].source = "tot_bars.png"
-            self.parousel.slides[2].source = "nmax_bars.png"
-            self.parousel.slides[3].source = "nmin_bars.png"
+        print [type(s) for s in self.parousel.slides]
+
+#        try:
+#            self.parousel.slides[1].reload()
+#            self.parousel.slides[2].reload()
+#            self.parousel.slides[3].reload()
+#        except AttributeError:
+#            self.parousel.slides[1].source = "tot_bars.png"
+#            self.parousel.slides[2].source = "nmax_bars.png"
+#            self.parousel.slides[3].source = "nmin_bars.png"
 
         #self.parent.add_widget(Image(source = "./tot_bars.png"))
 
@@ -123,7 +125,6 @@ class ScorekeepWidget(Widget):
 
 class ScorekeepApp(App):
     def build(self):
-        print "ROOT SIZE:\t"
         pass
 
 

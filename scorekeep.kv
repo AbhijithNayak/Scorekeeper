@@ -92,8 +92,8 @@
     orientation: 'horizontal'
     size_hint: 1, None
     spacing: 0.1*self.width
-    center_x: root.center_x
-    width: root.width
+    center_x: self.center_x
+    width: self.width
 
     name_ti: NameTI
     score_ti: ScoreTI
@@ -122,6 +122,19 @@
         valign: 'middle'
 
 
+<BarGraph@Widget>:
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1.0
+        Rectangle:
+            size: self.size
+            pos: self.pos
+        Color:
+            rgba: 0, 0, 0, 1.0
+        Line:
+            points: [0.1*root.width, 0.1*root.top, 0.1*root.width, 0.9*root.top]
+            width: 1
+
 Carousel:
     id: parousel
     loop: True
@@ -145,10 +158,10 @@ Carousel:
 #3. Buttons
         
         BoxLayout: 
-            orientation: 'vertical'
-            padding: 0.02*self.width, 0.02*self.height, 0.02*self.width, 0.02*self.height #left, top, right, bottom
             size: root.size
             spacing: 0.05*self.height
+            orientation: 'vertical'
+            padding: 0.02*self.width, 0.02*self.height, 0.02*self.width, 0.02*self.height #left, top, right, bottom
 
 #1. Header Layout
             HeaderLayout:
@@ -183,7 +196,7 @@ Carousel:
                     size_hint: 0.5, 1
                     pos_hint: {'center_x': 0.5}
                     on_press: inputwidget.update_round()
-                    #on_press: root.slides[1].reload()
+                    #on_press: self.slides[1].reload()
                 
                 AddButton: 
                     id: AddButton
@@ -193,23 +206,8 @@ Carousel:
 
 
 #Page 2 of the Carousel
-    Image:
-        source: "./tot_bars.png"
-        allow_stretch: True
-        keep_ratio: False
-        size: root.size
-        
+    BarGraph:
 #Page 3 of the Carousel
-    Image:
-        source: "./nmax_bars.png"
-        allow_stretch: True
-        keep_ratio: False
-        size: root.size
-        
+    BarGraph:
 #Page 4 of the Carousel
-    Image:
-        source: "./nmin_bars.png"
-        allow_stretch: True
-        keep_ratio: False
-        size: root.size
-        
+    BarGraph:
